@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quant_backtest
+  redis:
+    host: localhost
+
+logging:
+  level:
+    com.quant: DEBUG
+    org.springframework.web: DEBUG

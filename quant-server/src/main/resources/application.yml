@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: quant-backtest-server
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quant_backtest
+    username: quant
+    password: quant123
+    driver-class-name: org.postgresql.Driver
+  redis:
+    host: localhost
+    port: 6379
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    map-underscore-to-camel-case: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.quant: DEBUG
+    root: INFO

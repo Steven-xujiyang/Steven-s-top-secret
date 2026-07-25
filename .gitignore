@@ -1,0 +1,45 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.jar
+*.war
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node (quant-ui)
+node_modules/
+dist/
+.vite/
+
+# Python (scripts)
+__pycache__/
+*.pyc
+.venv/
+
+# Test reports
+test-output/
+
+# Temp files
+*.tmp
+*.bak
