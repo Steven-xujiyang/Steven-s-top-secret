@@ -23,6 +23,8 @@
         <module>quant-analytics</module>
         <module>quant-server</module>
         <module>quant-benchmark</module>
+        <module>quant-kernel</module>
+        <module>quant-architecture-tests</module>
     </modules>
 
     <properties>
@@ -51,10 +53,14 @@
         <assertj.version>3.25.3</assertj.version>
         <testcontainers.version>1.19.7</testcontainers.version>
 
+        <!-- ArchUnit -->
+        <archunit.version>1.4.0</archunit.version>
+
         <!-- Plugin versions -->
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -108,6 +114,18 @@
                 <groupId>com.quant</groupId>
                 <artifactId>quant-analytics</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.quant</groupId>
+                <artifactId>quant-kernel</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- ArchUnit -->
+            <dependency>
+                <groupId>com.tngtech.archunit</groupId>
+                <artifactId>archunit-junit5</artifactId>
+                <version>${archunit.version}</version>
             </dependency>
 
             <!-- Apache Commons -->

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.quant</groupId>
+        <artifactId>quant-backtest</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>quant-kernel</artifactId>
+    <packaging>jar</packaging>
+    <name>Quant Kernel</name>
+    <description>Deterministic daily-frequency backtesting kernel — pure Java, no framework dependencies</description>
+
+    <properties>
+        <maven.compiler.release>24</maven.compiler.release>
+    </properties>
+
+    <dependencies>
+        <!--
+            DELIBERATELY ZERO compile/provided dependencies.
+            This module is pure Java standard library.
+            No Spring, no JPA, no HTTP client, no JDBC driver, no JSON lib.
+            Architecture test enforces this at build time.
+        -->
+
+        <!-- Testing only -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>ban-forbidden-dependencies</id>
+                        <goals><goal>enforce</goal></goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <searchTransitive>true</searchTransitive>
+                                    <excludes>
+                                        <exclude>org.springframework:*:*:*</exclude>
+                                        <exclude>jakarta.persistence:*:*:*</exclude>
+                                        <exclude>jakarta.servlet:*:*:*</exclude>
+                                        <exclude>org.hibernate:*:*:*</exclude>
+                                        <exclude>com.zaxxer:*:*:*</exclude>
+                                        <exclude>org.postgresql:*:*:*</exclude>
+                                        <exclude>com.mysql:*:*:*</exclude>
+                                        <exclude>org.apache.httpcomponents:*:*:*</exclude>
+                                        <exclude>com.squareup.okhttp3:*:*:*</exclude>
+                                        <exclude>com.fasterxml.jackson.*:*:*:*</exclude>
+                                        <exclude>com.google.guava:*:*:*</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
